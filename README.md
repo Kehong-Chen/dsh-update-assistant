@@ -6,11 +6,7 @@ DSH（DeepSeek Harness）桌面版的更新 / 重启助手。
 
 ## 功能
 
-### 界面按钮
-
-对话输入框上方的 dock 里有一个 **「更新插件市场」** 按钮：点击后直接调用 Host 接口把 dshmarket 升到 npm latest（pnpm overlay，不卸载市场），成功后提示“重启 DSH 后生效”。不需要 AI 参与，也不需要脚本。
-
-该接口 `POST /dsh-update-assistant/market-update` 只接受本机（loopback）、同源、且带 `x-dsh-update-client: 1` 头的请求。
+插件市场（dshmarket）1.73 起自带升级链路：**市场页顶栏在“确实有新版”时会出现「更新插件市场」按钮**，点击后由市场自己完成 pnpm overlay 安装（`already-installed` 时先 removeBundle 再装）。本插件不再额外添加按钮，只提供工具与兜底。
 
 ### 工具
 

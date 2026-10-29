@@ -1,18 +1,16 @@
 {
   "name": "dsh-update-assistant",
-  "version": "0.3.0",
-  "description": "DSH 更新助手：检查桌面版与插件更新，安全地关闭应用、静默安装、校验版本并重启；提供插件版本对比、插件市场自更新按钮、以及退出阻塞（unref）修复。",
+  "version": "0.3.1",
+  "description": "DSH 更新助手：检查桌面版与插件更新，安全地关闭应用、静默安装、校验版本并重启；提供插件版本对比、插件市场自更新、以及退出阻塞（unref）修复。",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",
-    "./client": "./lib/client.js",
     "./cordis.patch.yml": "./cordis.patch.yml",
     "./package.json": "./package.json"
   },
   "files": [
     "lib/index.js",
-    "lib/client.js",
     "lib/helper.ps1",
     "cordis.patch.yml",
     "README.md",
@@ -43,9 +41,6 @@
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
-    },
-    "client": {
-      "platform": "web"
     }
   }
 }
