@@ -1,0 +1,15 @@
+#!/bin/sh
+# Auto-tag every commit with the package version (v<version>) when missing.
+# Enabled by: git config core.hooksPath .githooks
+# Pushing tags automatically needs: git config push.followTags true
+set -e
+root=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
+cd "$root" || exit 0
+ver=$(sed -n 's/^[[:space:]]*"version":[[:space:]]*"\([^"]*\)".*/\1/p' package.json 2>/dev/null | head -n 1)
+[ -n "$ver" ] || exit 0
+name="v$ver"
+if git rev-parse -q --verify "refs/tags/$name" >/dev/null 2>&1; then
+  exit 0
+fi
+git tag -a "$name" -m "dsh-update-assistant $name" >/dev/null 2>&1 || exit 0
+echo "[dsh-update-assistant] tagged $name"
