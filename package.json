@@ -1,6 +1,6 @@
 {
   "name": "dsh-update-assistant",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "DSH 更新助手：检查桌面版与插件更新，安全地关闭应用、静默安装、校验版本并重启；提供插件版本对比、插件市场自更新、以及退出阻塞（unref）修复。",
   "type": "module",
   "main": "lib/index.js",
