@@ -34,11 +34,13 @@ dsh plugin --profile desktop add link:C:\path\to\dsh-update-assistant
 1. 工具把 `runtime/config.json`、`runtime/launch.cmd` 写好，并用 `Register-ScheduledTask` 注册一次性任务 `DSHUpdateAssistant`（`-Once -At <时间>`，交互式运行）；
 2. 任务由 Task Scheduler 拉起，**不在 Host 进程树里**，因此杀 Host 不会连带杀掉它；
 3. `lib/helper.ps1`：
+   - **弹出可见的 PowerShell 窗口**并实时打印进度（开始/结束进程/安装中/等待版本/重启/完成），不再默默重启；
    - **先校验安装包**（存在性 + Authenticode 签名，`allowUnsigned: true` 可跳过）；
    - 结束安装目录下所有进程（以及命令行含 `dsh-desktop-host` / `dsh-subprocess-local` 的进程）；
    - 静默运行安装包 `--updated /S`，轮询注册表 `DisplayVersion` 直到目标版本（180 秒超时告警）；
    - 重新启动应用，删除自己的任务；
-   - 全程写 `runtime/update.log`。
+   - 全程同时写 `runtime/update.log`。
+   - 调试可用 `-DryRun`：只演示进度、不动进程/不安装。
 
 ## 安全门控
 
